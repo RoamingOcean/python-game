@@ -1,3 +1,4 @@
+from curses import BUTTON1_CLICKED
 import json
 import time
 from tkinter import *
@@ -5,14 +6,15 @@ import pygame
 import os
 import tkinter as tk
 from random import *
-from functools import partial
 
+from Window.main_window import *
 from Combat.combat import Combat
 from Inventory.inventory import Inventory
 from Perso.perso import Perso
 from Perso.person import Person
 from Rooms.rooms import Room
 from Utils.load_json import LoadJson
+from int import open_inventory_management
 
 
 def quest_frame(self):
@@ -49,6 +51,7 @@ def quest_frame(self):
     frame.place(x=0, y=0)
     frame.lower()
 
+      
     def inventory():
         frame.pack_forget()
         frame.destroy()
@@ -56,12 +59,19 @@ def quest_frame(self):
         inventory = Inventory(perso, self.q)
         inventory.show()
         perso.save()
+        
 
-    InventaireButton = Button(frame, text="Inventaire", command=inventory, border=0,
+    InventaireButton = Button(frame, text="Inventaire", command=open_inventory_management, border=0,
                               activebackground='#12c4c0',
                               bg="#12c4c0")
     InventaireButton.place(x=850, y=500)
 
+# class MainWindow:
+#     def __init__(self, parent):
+#         self.parent = parent
+#         def inventoryToggle (self):
+#             self.inventoryToggleFrameOpen = True
+#             self.inventoryToggleFrameClosed = True 
 
 def start_quest_frame(self):
     def fight():
@@ -297,7 +307,7 @@ def combat(self, isBoss):
         itemTab = []
         inventory = Inventory(perso)
         getItems = perso.get('inventaire')
-
+          
         
         # Utiliser une potion
         def healHero(name, amount, hp):
@@ -339,7 +349,7 @@ def combat(self, isBoss):
     InventaireButton = Button(Combatframe, text="Inventaire", command=inventory, border=0,
                               activebackground='#12c4c0',
                               bg="#12c4c0")
-    InventaireButton.place(x=850, y=500)
+    InventaireButton.place(x=850, y=500, )
 
     FuiteButton = Button(Combatframe, text="Fuite", command=fuite, border=0, activebackground='#12c4c0',
                          bg="#12c4c0")
